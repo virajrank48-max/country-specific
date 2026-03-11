@@ -1,0 +1,158 @@
+{smcl}
+{com}{sf}{ul off}{txt}{.-}
+      name:  {res}<unnamed>
+       {txt}log:  {res}C:\Users\swana\OneDrive\Documents\EcotrixGroupB6Stata.smcl
+  {txt}log type:  {res}smcl
+ {txt}opened on:  {res} 3 Nov 2025, 14:48:45
+
+{com}. import excel "C:\Users\swana\OneDrive\Documents\Democratic Index Data.xlsx", sheet("Sheet1") firstrow
+{res}{text}(9 vars, 149 obs)
+
+{com}. describe
+
+{txt}Contains data
+ Observations:{res}           149                  
+{txt}    Variables:{res}             9                  
+{txt}{hline}
+Variable      Storage   Display    Value
+    name         type    format    label      Variable label
+{hline}
+{p 0 48}{res}{bind:Country        }{txt}{bind: str33   }{bind:{txt}%33s      }{space 1}{bind:         }{bind:  }{res}{res}Country{p_end}
+{p 0 48}{bind:Militaryexpen~e}{txt}{bind: double  }{bind:{txt}%10.0g    }{space 1}{bind:         }{bind:  }{res}{res}Military expenditure{p_end}
+{p 0 48}{bind:Militaryperso~l}{txt}{bind: double  }{bind:{txt}%10.0g    }{space 1}{bind:         }{bind:  }{res}{res}Military personal{p_end}
+{p 0 48}{bind:Heavyweapons   }{txt}{bind: double  }{bind:{txt}%10.0g    }{space 1}{bind:         }{bind:  }{res}{res}Heavy weapons{p_end}
+{p 0 48}{bind:GMIscore       }{txt}{bind: int     }{bind:{txt}%10.0g    }{space 1}{bind:         }{bind:  }{res}{res}GMI score{p_end}
+{p 0 48}{bind:GMIrank        }{txt}{bind: int     }{bind:{txt}%10.0g    }{space 1}{bind:         }{bind:  }{res}{res}GMI rank{p_end}
+{p 0 48}{bind:Povertygap     }{txt}{bind: double  }{bind:{txt}%10.0g    }{space 1}{bind:         }{bind:  }{res}{res}Poverty gap{p_end}
+{p 0 48}{bind:WeathertheSta~c}{txt}{bind: byte    }{bind:{txt}%10.0g    }{space 1}{bind:         }{bind:  }{res}{res}Weather the State is Autocratic {p_end}
+{p 0 48}{bind:DemocraticIndex}{txt}{bind: double  }{bind:{txt}%10.0g    }{space 1}{bind:         }{bind:  }{res}{res}Democratic Index{p_end}
+{txt}{hline}
+Sorted by: 
+{res}     Note: Dataset has changed since last saved.
+
+{com}. br
+
+. reg DemocraticIndex Militaryexpenditure Militarypersonal Povertygap WeathertheStateisAutocratic
+
+{txt}      Source {c |}       SS           df       MS      Number of obs   ={res}        45
+{txt}{hline 13}{c +}{hline 34}   F(4, 40)        = {res}    13.86
+{txt}       Model {c |} {res}  190.74319         4  47.6857975   {txt}Prob > F        ={res}    0.0000
+{txt}    Residual {c |} {res} 137.667921        40  3.44169803   {txt}R-squared       ={res}    0.5808
+{txt}{hline 13}{c +}{hline 34}   Adj R-squared   ={res}    0.5389
+{txt}       Total {c |} {res} 328.411111        44  7.46388889   {txt}Root MSE        =   {res} 1.8552
+
+{txt}{hline 28}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 1}            DemocraticIndex{col 29}{c |} Coefficient{col 41}  Std. err.{col 53}      t{col 61}   P>|t|{col 69}     [95% con{col 82}f. interval]
+{hline 28}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 8}Militaryexpenditure {c |}{col 29}{res}{space 2} 1.242655{col 41}{space 2} .6663054{col 52}{space 1}    1.86{col 61}{space 3}0.070{col 69}{space 4} -.103998{col 82}{space 3} 2.589309
+{txt}{space 11}Militarypersonal {c |}{col 29}{res}{space 2}-.1924791{col 41}{space 2} 1.048512{col 52}{space 1}   -0.18{col 61}{space 3}0.855{col 69}{space 4}-2.311602{col 82}{space 3} 1.926644
+{txt}{space 17}Povertygap {c |}{col 29}{res}{space 2}-.0713553{col 41}{space 2}   .03094{col 52}{space 1}   -2.31{col 61}{space 3}0.026{col 69}{space 4}-.1338873{col 82}{space 3}-.0088233
+{txt}WeathertheStateisAutocratic {c |}{col 29}{res}{space 2}-5.470466{col 41}{space 2} .7725595{col 52}{space 1}   -7.08{col 61}{space 3}0.000{col 69}{space 4}-7.031867{col 82}{space 3}-3.909065
+{txt}{space 22}_cons {c |}{col 29}{res}{space 2} 5.726195{col 41}{space 2} .7862572{col 52}{space 1}    7.28{col 61}{space 3}0.000{col 69}{space 4} 4.137109{col 82}{space 3}  7.31528
+{txt}{hline 28}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{res}
+{com}. corr Militaryexpenditure Militarypersonal
+{txt}(obs=149)
+
+             {c |} Milita~e Milita~l
+{hline 13}{c +}{hline 18}
+Militaryex~e {c |}{res}   1.0000
+{txt}Militarype~l {c |}{res}   0.4881   1.0000
+
+
+{com}. predict DemocraticIndex_hat
+{txt}(option {bf:xb} assumed; fitted values)
+(87 missing values generated)
+
+{com}. describe
+
+{txt}Contains data
+ Observations:{res}           149                  
+{txt}    Variables:{res}            10                  
+{txt}{hline}
+Variable      Storage   Display    Value
+    name         type    format    label      Variable label
+{hline}
+{p 0 48}{res}{bind:Country        }{txt}{bind: str33   }{bind:{txt}%33s      }{space 1}{bind:         }{bind:  }{res}{res}Country{p_end}
+{p 0 48}{bind:Militaryexpen~e}{txt}{bind: double  }{bind:{txt}%10.0g    }{space 1}{bind:         }{bind:  }{res}{res}Military expenditure{p_end}
+{p 0 48}{bind:Militaryperso~l}{txt}{bind: double  }{bind:{txt}%10.0g    }{space 1}{bind:         }{bind:  }{res}{res}Military personal{p_end}
+{p 0 48}{bind:Heavyweapons   }{txt}{bind: double  }{bind:{txt}%10.0g    }{space 1}{bind:         }{bind:  }{res}{res}Heavy weapons{p_end}
+{p 0 48}{bind:GMIscore       }{txt}{bind: int     }{bind:{txt}%10.0g    }{space 1}{bind:         }{bind:  }{res}{res}GMI score{p_end}
+{p 0 48}{bind:GMIrank        }{txt}{bind: int     }{bind:{txt}%10.0g    }{space 1}{bind:         }{bind:  }{res}{res}GMI rank{p_end}
+{p 0 48}{bind:Povertygap     }{txt}{bind: double  }{bind:{txt}%10.0g    }{space 1}{bind:         }{bind:  }{res}{res}Poverty gap{p_end}
+{p 0 48}{bind:WeathertheSta~c}{txt}{bind: byte    }{bind:{txt}%10.0g    }{space 1}{bind:         }{bind:  }{res}{res}Weather the State is Autocratic {p_end}
+{p 0 48}{bind:DemocraticIndex}{txt}{bind: double  }{bind:{txt}%10.0g    }{space 1}{bind:         }{bind:  }{res}{res}Democratic Index{p_end}
+{p 0 48}{bind:DemocraticInd~t}{txt}{bind: float   }{bind:{txt}%9.0g     }{space 1}{bind:         }{bind:  }{res}{res}Fitted values{p_end}
+{txt}{hline}
+Sorted by: 
+{res}     Note: Dataset has changed since last saved.
+
+{com}. gen e = DemocraticIndex - DemocraticIndex_hat
+{txt}(104 missing values generated)
+
+{com}. rvfplot
+{res}
+{com}. scatter e Militaryexpenditure
+{res}
+{com}. scatter e Militarypersonal
+{res}
+{com}. scatter e Povertygap
+{res}
+{com}. scatter e Povertygap
+{res}
+{com}. scatter e WeathertheStateisAutocratic
+{res}
+{com}. estat hettest
+
+{txt}Breusch–Pagan/Cook–Weisberg test for heteroskedasticity 
+Assumption: Normal error terms
+{p 0 11 0}Variable:{space 1}{res:{txt:Fitted values of} {res:DemocraticIndex}}{p_end}
+
+H0: Constant variance
+
+{ralign 11:chi2({res:1})} = {res}{ralign 6:3.41}
+{txt}{ralign 11:Prob > chi2} = {res}{ralign 6:0.0647}
+
+{com}. vif
+
+{txt}    Variable {c |}       VIF       1/VIF  
+{hline 13}{c +}{hline 22}
+Militaryex~e {c |} {res}     1.57    0.637237
+{txt}Militarype~l {c |} {res}     1.29    0.772473
+{txt}Weatherthe~c {c |} {res}     1.25    0.800896
+{txt}{space 2}Povertygap {c |} {res}     1.01    0.990623
+{txt}{hline 13}{c +}{hline 22}
+    Mean VIF {c |} {res}     1.28
+
+{com}. hist e, normal
+{txt}(bin={res}6{txt}, start={res}-3.8779082{txt}, width={res}1.1426174{txt})
+{res}
+{com}. hist e, normal
+{txt}(bin={res}6{txt}, start={res}-3.8779082{txt}, width={res}1.1426174{txt})
+{res}
+{com}. sktest e
+{res}
+{txt}Skewness and kurtosis tests for normality
+{col 58}{hline 5} Joint test {hline 5}
+{col 5}Variable {c |}{col 22}Obs   Pr(skewness)   Pr(kurtosis)   Adj chi2(2)  Prob>chi2
+{hline 13}{c +}{hline 65}
+           e {c |}{res}{col 16}       45{col 34}0.3672{col 49}0.8204{col 60}     0.90{col 74}0.6375
+
+{com}. estat ovtest
+
+{txt}Ramsey RESET test for omitted variables
+Omitted: Powers of fitted values of {res:DemocraticIndex}
+
+H0: Model has no omitted variables
+
+{ralign 8:F({res:3}, {res:37})} = {res}{ralign 6:0.59}
+{txt}{ralign 8:Prob > F} = {res}{ralign 6:0.6244}
+
+{com}. log off
+      {txt}name:  {res}<unnamed>
+       {txt}log:  {res}C:\Users\swana\OneDrive\Documents\EcotrixGroupB6Stata.smcl
+  {txt}log type:  {res}smcl
+ {txt}paused on:  {res} 3 Nov 2025, 15:06:21
+{txt}{.-}
+{smcl}
+{txt}{sf}{ul off}
