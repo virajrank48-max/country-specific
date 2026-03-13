@@ -13,4 +13,3 @@ used pandas, numpy and matplotlib
 
 ### 3) south-korea_rck.ipynb 
 This file explain south korea economy with the emiprical and theoratical percpective of the Ramsey model of economic growth.
-
