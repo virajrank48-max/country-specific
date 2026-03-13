@@ -1,13 +1,13 @@
 # country-specific
 
 
-### Project on Democratic Destabilization & Militarization Analysis
+### 1) Project on Democratic Destabilization & Militarization Analysis
 objective of reserch is to identify the effect of militarization on demorartic stability in the country. 
 
 ![WhatsApp Image 2026-03-11 at 12 46 41 PM](https://github.com/user-attachments/assets/e7b16d0c-7ff7-4d5b-865e-33c7e7be7a08)
 
 
-### south-korea.ipynb
+### 2) south-korea.ipynb
 An solow swan growth model explaination given of the south korea economy. 
 used pandas, numpy and matplotlib
 
